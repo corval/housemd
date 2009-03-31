@@ -18,7 +18,7 @@ public class Main {
     static AProductos productos;
 
     /**
-     * @param args the command line arguments
+     * Para los que no sepan esto es el main
      */
     public static void main(String[] args) {
         try {
