@@ -6,7 +6,7 @@
 /*
  * Creditos.java
  *
- * Cthulhu Corporation 2009 All rights reserved
+ * Created on 10-feb-2009, 10:49:38
  */
 
 package Principal;
@@ -52,10 +52,10 @@ public class Creditos extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Acerca de.."));
 
-        jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 36));
         jLabel1.setText("Dr. House");
 
-        jLabel2.setText("Ver.: 0.0002.12.a (Estable)");
+        jLabel2.setText("Ver.: 0.0002.12.a (Es Table)");
 
         jLabel3.setText("Cthulhu Corp ©");
 
@@ -96,8 +96,6 @@ public class Creditos extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
-
-        imgCthulhu.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
