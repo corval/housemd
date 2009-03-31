@@ -103,7 +103,6 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,6 +136,7 @@ public class PPrincipal extends javax.swing.JFrame {
         listMed = new javax.swing.JList();
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -158,11 +158,6 @@ public class PPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dr. House");
         setResizable(false);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 50, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -238,11 +233,6 @@ public class PPrincipal extends javax.swing.JFrame {
 
         jLabel1.setText("Busqueda: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 buscar(evt);
@@ -350,7 +340,7 @@ public class PPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextField6)
                             .addComponent(jTextField10)))
                     .addComponent(jButton3))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4, jTextField9});
@@ -393,13 +383,13 @@ public class PPrincipal extends javax.swing.JFrame {
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -467,7 +457,7 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRecetaLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                                 .addComponent(jButton5)
                                 .addGap(46, 46, 46))
                             .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -496,8 +486,13 @@ public class PPrincipal extends javax.swing.JFrame {
 
         paneles.addTab("Receta", panelReceta);
 
-        paneles.setBounds(10, 10, -1, 370);
+        paneles.setBounds(10, 10, 584, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
 
@@ -561,7 +556,7 @@ public class PPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,41 +622,15 @@ public class PPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_agregar
 
-    private void panelRecetaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRecetaFocusGained
-        // TODO add your handling code here:
-}//GEN-LAST:event_panelRecetaFocusGained
-
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        JOptionPane.showMessageDialog(this, "Espere, un momento, \nla impresora esta saturada.");
-}//GEN-LAST:event_jButton5MouseClicked
-
-    private void btnAgregarMedicinaARecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicinaARecetaActionPerformed
-        selecMed = new SeleccionarMedicina(this, true, Main.productos);
-        selecMed.setVisible(true);
-        if (selecMed.elegido) {
-            recetaActual.getMedicamentos().nuevoProducto(selecMed.prodSeleccionado.getNumCodigoBarras(), selecMed.prodSeleccionado.getNombre(), selecMed.prodSeleccionado.getCantidad());
-            actualizaLista();
-        }
-}//GEN-LAST:event_btnAgregarMedicinaARecetaActionPerformed
-
-    private void listMedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listMedKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_DELETE && listMed.getSelectedIndex() != -1){
-            recetaActual.getMedicamentos().eliminarProducto(listMed.getSelectedIndex());
-            actualizaLista();
-        }
-}//GEN-LAST:event_listMedKeyReleased
-
     private void buscar(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar
         String palbus = jTextField1.getText();
         if (palbus.length() == 0) {
-
             jTable1.clearSelection();
             return;
         }
         for (int i = 1; i <= Main.productos.getN(); i++) {
             if (jComboBox1.getSelectedIndex() == 0) {
                 if (Main.productos.regresaPosProductoPorNombre(palbus) > 0) {
-
                     jTable1.changeSelection(Main.productos.regresaPosProductoPorNombre(palbus) - 1, 0, false, false);
                 }
             } else {
@@ -688,9 +657,29 @@ public class PPrincipal extends javax.swing.JFrame {
         }
 }//GEN-LAST:event_jTable1PropertyChange
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        JOptionPane.showMessageDialog(this, "Espere, un momento, \nla impresora esta saturada.");
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void panelRecetaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRecetaFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+}//GEN-LAST:event_panelRecetaFocusGained
+
+    private void btnAgregarMedicinaARecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMedicinaARecetaActionPerformed
+        selecMed = new SeleccionarMedicina(this, true, Main.productos);
+        selecMed.setVisible(true);
+        if (selecMed.elegido) {
+            recetaActual.getMedicamentos().nuevoProducto(selecMed.prodSeleccionado.getNumCodigoBarras(), selecMed.prodSeleccionado.getNombre(), selecMed.prodSeleccionado.getCantidad());
+            actualizaLista();
+        }
+    }//GEN-LAST:event_btnAgregarMedicinaARecetaActionPerformed
+
+    private void listMedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listMedKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_DELETE && listMed.getSelectedIndex() != -1){
+            recetaActual.getMedicamentos().eliminarProducto(listMed.getSelectedIndex());
+            actualizaLista();
+        }
+    }//GEN-LAST:event_listMedKeyReleased
 
     /**
      * @param args the command line arguments

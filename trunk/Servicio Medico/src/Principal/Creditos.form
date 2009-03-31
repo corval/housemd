@@ -106,7 +106,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver.: 0.0002.12.a (Estable)"/>
+            <Property name="text" type="java.lang.String" value="Ver.: 0.0002.12.a (Es Table)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -120,9 +120,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="imgCthulhu">
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-          </AccessibilityProperties>
         </Component>
       </SubComponents>
     </Container>

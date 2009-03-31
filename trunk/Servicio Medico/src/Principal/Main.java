@@ -22,10 +22,7 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-            javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-
         } catch (Exception ex) {
 
         }
