@@ -6,7 +6,7 @@
 /*
  * Creditos.java
  *
- * Created on 10-feb-2009, 10:49:38
+ * Cthulhu Corporation 2009 
  */
 
 package Principal;
