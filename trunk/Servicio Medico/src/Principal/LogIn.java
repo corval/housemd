@@ -1,6 +1,7 @@
 package Principal;
 
 import java.io.*;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class LogIn extends javax.swing.JFrame {
@@ -8,6 +9,7 @@ public class LogIn extends javax.swing.JFrame {
     public LogIn() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
