@@ -39,7 +39,7 @@ public class PPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         actualizaTabla();
         recetaActual = new Receta(0.0f, 0.0f, null, null, null, null, 0);
-        this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/houseCallado.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
     }
 
     boolean hayItemSelecto() {
