@@ -6,6 +6,7 @@
 
 package Principal;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,8 @@ public class NuevoUsuario extends javax.swing.JFrame {
     /** Creates new form NuevoUsuario */
     public NuevoUsuario(int llega) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
         cual = llega;
         muere = false;
         if(cual == 1){
