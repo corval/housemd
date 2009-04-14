@@ -20,6 +20,7 @@ public class Main {
     static PPrincipal principal;
     static AProductos productos;
     static AUsuarios usuarios;
+    static LogIn logIn;
 
     static String login = "root";
     static String password = "pass";
@@ -79,7 +80,9 @@ public class Main {
         productos = new AProductos();
         principal = new PPrincipal();
         usuarios = new AUsuarios();
-        principal.setVisible(true);
+        logIn = new LogIn();
+        cargaUsuarios();
+        logIn.setVisible(true);
 
     }
 }

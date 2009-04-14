@@ -163,8 +163,6 @@ public class LogIn extends javax.swing.JFrame {
                 break;
             case 1:
                 setVisible(false);
-                System.out.println(Encriptacion.encripta(passTemp, nombreTemp));
-                System.out.println(Encriptacion.descripta(Encriptacion.encripta(passTemp, nombreTemp), nombreTemp));
                 Main.principal.setVisible(true);
                 break;
         }
