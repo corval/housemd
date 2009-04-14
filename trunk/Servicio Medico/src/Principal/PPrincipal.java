@@ -105,6 +105,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -138,7 +139,6 @@ public class PPrincipal extends javax.swing.JFrame {
         listMed = new javax.swing.JList();
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -160,6 +160,16 @@ public class PPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dr. House");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                cerrar(evt);
+            }
+        });
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -491,11 +501,6 @@ public class PPrincipal extends javax.swing.JFrame {
         paneles.setBounds(10, 10, 584, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 60, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         MenuArchivo.setText("Archivo");
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
@@ -682,6 +687,10 @@ public class PPrincipal extends javax.swing.JFrame {
             actualizaLista();
         }
     }//GEN-LAST:event_listMedKeyReleased
+
+    private void cerrar(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cerrar
+        Main.guardaUsuarios();
+    }//GEN-LAST:event_cerrar
 
     /**
      * @param args the command line arguments
