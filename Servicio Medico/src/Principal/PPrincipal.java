@@ -105,7 +105,6 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -139,6 +138,7 @@ public class PPrincipal extends javax.swing.JFrame {
         listMed = new javax.swing.JList();
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -165,11 +165,6 @@ public class PPrincipal extends javax.swing.JFrame {
                 cerrar(evt);
             }
         });
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 60, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -269,7 +264,7 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInventarioLayout.setVerticalGroup(
@@ -352,7 +347,7 @@ public class PPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextField6)
                             .addComponent(jTextField10)))
                     .addComponent(jButton3))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4, jTextField9});
@@ -395,7 +390,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
@@ -469,7 +464,7 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelRecetaLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                                 .addComponent(jButton5)
                                 .addGap(46, 46, 46))
                             .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -498,8 +493,13 @@ public class PPrincipal extends javax.swing.JFrame {
 
         paneles.addTab("Receta", panelReceta);
 
-        paneles.setBounds(10, 10, 584, 370);
+        paneles.setBounds(10, 10, 588, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
 
@@ -690,6 +690,7 @@ public class PPrincipal extends javax.swing.JFrame {
 
     private void cerrar(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cerrar
         Main.guardaUsuarios();
+        Main.guardaProductos();
     }//GEN-LAST:event_cerrar
 
     /**

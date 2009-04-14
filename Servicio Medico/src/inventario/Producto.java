@@ -11,7 +11,7 @@ package inventario;
  */
 
 
-public class Producto {
+public class Producto implements java.io.Serializable{
     private String numCodigoBarras;
     private String nombre;
     private int cantidad;

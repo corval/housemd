@@ -11,7 +11,7 @@ import inventario.AProductos;
  *
  * @author student6im7
  */
-public class Receta {
+public class Receta{
     private float estatura;
     private float peso;
     private String presion;
