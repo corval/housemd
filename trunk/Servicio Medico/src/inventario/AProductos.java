@@ -9,7 +9,7 @@ package inventario;
  *
  * @author student6im7
  */
-public class AProductos {
+public class AProductos implements java.io.Serializable{
     private Producto[] productos;
     private int n;
     private char[] aux = new char[1000];
