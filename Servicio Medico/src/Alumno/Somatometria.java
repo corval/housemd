@@ -13,5 +13,5 @@ public class Somatometria {
     String IDUsuario;
     float IMC;
     float peso;
-    float talla;
+    float talla;    
 }
