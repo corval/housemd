@@ -25,7 +25,7 @@ public class Main {
     static LogIn logIn;
     static String login = "root";
     static String password = "pass";
-    static String url = "jdbc:mysql://localhost:3306/HOUSE";
+    static String url = "jdbc:mysql://192.168.0.48:3306/test";
     static Connection conexion;
     static Statement stmt;
     static ResultSet rs;
