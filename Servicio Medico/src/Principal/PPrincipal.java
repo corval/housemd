@@ -16,6 +16,7 @@ import Recetas.SeleccionarMedicina;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import inventario.*;
+import java.awt.print.PrinterJob;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -105,6 +106,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,8 +139,8 @@ public class PPrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         listMed = new javax.swing.JList();
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        btnImprimirReceta = new javax.swing.JButton();
+        btnImprimirHistorial = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -165,6 +167,11 @@ public class PPrincipal extends javax.swing.JFrame {
                 cerrar(evt);
             }
         });
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -347,7 +354,7 @@ public class PPrincipal extends javax.swing.JFrame {
                             .addComponent(jTextField6)
                             .addComponent(jTextField10)))
                     .addComponent(jButton3))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4, jTextField9});
@@ -390,7 +397,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
@@ -437,10 +444,22 @@ public class PPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jButton5.setText("Imprimir");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnImprimirReceta.setText("Imprimir Receta");
+        btnImprimirReceta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                btnImprimirRecetaMouseClicked(evt);
+            }
+        });
+        btnImprimirReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirRecetaActionPerformed(evt);
+            }
+        });
+
+        btnImprimirHistorial.setText("Imprimir Historial");
+        btnImprimirHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImprimirHistorialMouseClicked(evt);
             }
         });
 
@@ -456,18 +475,20 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImprimirHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecetaLayout.createSequentialGroup()
                         .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(7, 7, 7)
-                        .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelRecetaLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                                .addComponent(jButton5)
-                                .addGap(46, 46, 46))
-                            .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(7, 7, 7)
+                                .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelRecetaLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnImprimirReceta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         panelRecetaLayout.setVerticalGroup(
@@ -477,7 +498,8 @@ public class PPrincipal extends javax.swing.JFrame {
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(btnImprimirHistorial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
@@ -487,7 +509,7 @@ public class PPrincipal extends javax.swing.JFrame {
                     .addGroup(panelRecetaLayout.createSequentialGroup()
                         .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)))
+                        .addComponent(btnImprimirReceta)))
                 .addContainerGap())
         );
 
@@ -495,11 +517,6 @@ public class PPrincipal extends javax.swing.JFrame {
 
         paneles.setBounds(10, 10, 588, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 60, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
 
@@ -664,9 +681,9 @@ public class PPrincipal extends javax.swing.JFrame {
         }
 }//GEN-LAST:event_jTable1PropertyChange
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void btnImprimirRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirRecetaMouseClicked
         JOptionPane.showMessageDialog(this, "Espere, un momento, \nla impresora esta saturada.");
-    }//GEN-LAST:event_jButton5MouseClicked
+}//GEN-LAST:event_btnImprimirRecetaMouseClicked
 
     private void panelRecetaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRecetaFocusGained
         // TODO add your handling code here:
@@ -693,6 +710,17 @@ public class PPrincipal extends javax.swing.JFrame {
         Main.guardaProductos();
     }//GEN-LAST:event_cerrar
 
+    private void btnImprimirHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirHistorialMouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_btnImprimirHistorialMouseClicked
+
+    private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
+        PrinterJob trabajito = PrinterJob.getPrinterJob();
+        if(trabajito.printDialog()){
+            System.out.println("Me la mamas");
+        }
+}//GEN-LAST:event_btnImprimirRecetaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -710,9 +738,10 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAyuda;
     private javax.swing.JMenu MenuInventario;
     private javax.swing.JButton btnAgregarMedicinaAReceta;
+    private javax.swing.JButton btnImprimirHistorial;
+    private javax.swing.JButton btnImprimirReceta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
