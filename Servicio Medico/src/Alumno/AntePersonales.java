@@ -7,7 +7,7 @@ package Alumno;
 
 /**
  *
- * @author alumno
+ * @author knjknjn
  */
 public class AntePersonales {
     String IDUsuario;
