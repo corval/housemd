@@ -1,14 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package inventario;
 
-/**
- *
- * @author student6im7
- */
 public class AProductos implements java.io.Serializable{
     private Producto[] productos;
     private int n;
