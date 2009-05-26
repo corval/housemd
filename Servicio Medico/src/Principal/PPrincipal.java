@@ -38,7 +38,7 @@ public class PPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         actualizaTabla();
-        recetaActual = new Receta(0.0f, 0.0f, null, null, null, null, 0);
+        recetaActual = new Receta(0.0f, 0.0f, 0.0f, null, null, null, null, null, null, null);
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
     }
 
