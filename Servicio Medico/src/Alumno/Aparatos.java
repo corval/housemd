@@ -11,7 +11,7 @@ package Alumno;
  */
 public class Aparatos {
     String RFC;
-    int GastroIntestinas;
+    int GastroIntestinales;
     int CardioVascular;
     int Respiratorio;
     int Genitourinario;

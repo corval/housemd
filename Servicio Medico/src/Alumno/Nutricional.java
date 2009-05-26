@@ -10,7 +10,7 @@ package Alumno;
  * @author alumno
  */
 public class Nutricional {
-    String IDUsuario;
-    int tipo;
-    int tipóDesnutricion;
+    String RFC;
+    int Tipo;
+    int TipoDesnutricion;
 }

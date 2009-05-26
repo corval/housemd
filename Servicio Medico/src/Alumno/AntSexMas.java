@@ -12,7 +12,7 @@ package Alumno;
 public class AntSexMas {
     String RFC;
     int Espermaquia;
-    int VSA;
+    String VSA;
     int NumParSex;
-    int PFam;
+    String PFam;
 }
