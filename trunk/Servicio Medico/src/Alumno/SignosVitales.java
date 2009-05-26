@@ -11,8 +11,8 @@ package Alumno;
  */
 public class SignosVitales {
     String RFC;
-    int frecCard;
-    int frecRes;
-    int temperatura;
-    int tenArt;
+    String Fre_Respiratoria;
+    String Fre_Cardiaca;
+    String Pre_Arterial;
+    int Temperatura;
 }
