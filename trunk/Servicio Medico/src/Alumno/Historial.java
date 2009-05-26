@@ -47,6 +47,39 @@ public class Historial {
                     rs = stmt.executeQuery ("select * from agudezavisual WHERE (RFC LIKE '"+ aBuscar +"')");
                     agVis.Derecho = Integer.parseInt(rs.getString("Derecho"));
                     agVis.Izquierdo = Integer.parseInt(rs.getString("Izquierdo"));
+                    if(Sexo.charAt(0) == 'm'){
+                        rs = stmt.executeQuery ("select * from ant_sexmas WHERE (RFC LIKE '"+ aBuscar +"')");
+                        antSM.Espermaquia = Integer.parseInt(rs.getString("Espermaquia"));
+                        antSM.VSA = rs.getString("VSA");
+                        antSM.NumParSex = Integer.parseInt(rs.getString("NumParSex"));
+                        antSM.PFam = rs.getString("PFam");
+                    }else{
+                        rs = stmt.executeQuery ("select * from ant_sexfem WHERE (RFC LIKE '"+ aBuscar +"')");
+                        antSF.Menarquia = Integer.parseInt(rs.getString("Menarquia"));
+                        antSF.Menstruacion = rs.getString("Menstruacion");
+                        antSF.SexPreMen = rs.getString("SexPreMen");
+                        antSF.Dismonerrea = rs.getString("Disminorrea");
+                        antSF.Oligomenorrea = rs.getString("Oligomenorrea");
+                        antSF.Amenorrea = rs.getString("Amenorrea");
+                        antSF.Metrorragia = rs.getString("Metrorragia");
+                        antSF.Pseudomenorrea = rs.getString("Pseudomenorrea");
+                        antSF.VSA = rs.getString("VSA");
+                        antSF.NumParSex = Integer.parseInt(rs.getString("NumParSex"));
+                        antSF.Embarazos = rs.getString("Embarazos");
+                        antSF.Cesares = rs.getString("Cesares");
+                        antSF.Abortos = rs.getString(rs.getString("Abortos"));
+                        antSF.PFam = rs.getString("PFam");
+                        antSF.Ritmo = rs.getString("Ritmo");
+                        antSF.DIU = rs.getString("DIU");
+                        antSF.Preservativo = rs.getString("Preservativo");
+                        antSF.Hormonal = rs.getString("Hormonal");
+                        antSF.Oral = rs.getString("Oral");
+                        antSF.Inyectable = rs.getString("Inyectable");
+                    }
+                    rs = stmt.executeQuery ("select * from antecedentes WHERE (RFC LIKE '"+ aBuscar +"')");
+                    antecedentes.Alcoholismo = Integer.parseInt(rs.getString("Alcoholismo"));
+                    antecedentes.Alcoholismo = Integer.parseInt(rs.getString("Alcoholismo"));
+                    
                 }else{
                     JOptionPane.showMessageDialog(null ,"Lo sentimos no existe ese RFC", "Error", JOptionPane.ERROR_MESSAGE);
                     conexion.close();
