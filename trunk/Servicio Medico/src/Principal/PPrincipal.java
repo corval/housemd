@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author student6im7
+ * @author papa
  */
 public class PPrincipal extends javax.swing.JFrame {
 
