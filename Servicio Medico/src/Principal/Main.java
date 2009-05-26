@@ -78,7 +78,7 @@ public class Main {
             System.out.println("No esta el archivo de productos");
         }
     }
-
+/*
     static void cargaBD() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -94,7 +94,7 @@ public class Main {
             stmt = conexion.createStatement();
         } catch (SQLException ex) {
         }
-    }
+    }*/
 
     /**
      * Para los que no sepan esto es el main
@@ -104,7 +104,7 @@ public class Main {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
         }
-        cargaBD();
+        //cargaBD();
         productos = new AProductos();
         usuarios = new AUsuarios();
         //carga archivos
