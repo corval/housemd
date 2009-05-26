@@ -5,6 +5,14 @@ import javax.swing.JOptionPane;
 
 public class Historial {    
     AgudezaVisual agVis;
+    AntSexFem antSF;
+    AntSexMas antSM;
+    Antecedentes antecedentes;
+    Aparatos aparatos;
+    Habitos habitos;
+    Nutricional nutricional;
+    SignosVitales sigVit;
+    Somatometria somato;
     String Nombre;
     String Apellido_Paterno;
     String Apellido_Materno;
