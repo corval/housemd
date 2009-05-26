@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Recetas;
 
 import inventario.AProductos;
 
-/**
- *
- * @author student6im7
- */
 public class Receta{
     private AProductos medicamentos;
     private String Pre_Arterial;
@@ -42,9 +33,6 @@ public class Receta{
         return medicamentos;
     }
 
-    /**
-     * @param medicamentos the medicamentos to set
-     */
     public void setMedicamentos(AProductos medicamentos) {
         this.medicamentos = medicamentos;
     }
