@@ -10,15 +10,15 @@ package Alumno;
  * @author alumno
  */
 public class Aparatos {
-    String IDUsuario;
-    int gastroIntestinal;
-    int cardioVascular;
-    int respiratorio;
-    int genitourinario;
-    int piel;
-    int muscular;
-    int endocrinologo;
-    int visual;
-    int auditivoDer;
-    int auditivoIzq;
+    String RFC;
+    int GastroIntestinas;
+    int CardioVascular;
+    int Respiratorio;
+    int Genitourinario;
+    int Piel;
+    int Muscular;
+    int Endocrinologo;
+    int Visual;
+    int AuditivoDer;
+    int AuditivoIzq;
 }

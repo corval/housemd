@@ -10,7 +10,7 @@ package Alumno;
  * @author alumno
  */
 public class SignosVitales {
-    String IDUsuario;
+    String RFC;
     int frecCard;
     int frecRes;
     int temperatura;

@@ -10,7 +10,7 @@ package Alumno;
  * @author alumno
  */
 public class AgudezaVisual {
-    String IDUsuario;
-    int derecho;
-    int izquierdo;
+    String RFC;
+    int Derecho;
+    int Izquierdo;
 }

@@ -10,8 +10,8 @@ package Alumno;
  * @author alumno
  */
 public class AntSexMas {
-    String IDUsuario;
-    int espermaquia;
+    String RFC;
+    int Espermaquia;
     int VSA;
     int NumParSex;
     int PFam;
