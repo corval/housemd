@@ -10,26 +10,26 @@ package Alumno;
  * @author alumno
  */
 public class AntSexFem {
-    String IDUsuario;
-    int menarquia;
-    int menstruacion;
-    int sexPreMen;
-    int dismonerrea;
+    String RFC;
+    int Menarquia;
+    int Menstruacion;
+    int SexPreMen;
+    int Dismonerrea;
     int Oligomenorrea;
-    int amenorrea;
-    int metrorragia;
-    int pseudomenorrea;
+    int Amenorrea;
+    int Metrorragia;
+    int Pseudomenorrea;
     int VSA;
-    int numParSex;
-    int embarazos;
-    int cesareas;
-    int abortos;
+    int NumParSex;
+    int Embarazos;
+    int Cesareas;
+    int Abortos;
     int PFam;
-    int ritmo;
+    int Ritmo;
     int DIU;
-    int preservativo;
-    int hormonal;
-    int oral;
-    int inyectable;
+    int Preservativo;
+    int Hormonal;
+    int Oral;
+    int Inyectable;
     int FUM;
 }

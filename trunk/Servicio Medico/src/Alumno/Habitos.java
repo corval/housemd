@@ -10,10 +10,10 @@ package Alumno;
  * @author alumno
  */
 public class Habitos {
-    String IDUsuario;
-    String otrasActividades;
+    String RFC;
+    String OtrasActividades;
     String OtraReligion;
-    int actividades;
-    int religion;
-    int preguntas;
+    int Actividades;
+    int Religion;
+    int Preguntas;
 }

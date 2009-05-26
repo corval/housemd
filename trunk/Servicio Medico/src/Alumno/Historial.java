@@ -9,12 +9,12 @@ package Alumno;
  *
  * @author alumno
  */
-public class Historial {
-    String IDUsuario;
-    String nombre;
-    String apellidoPaterno;
-    String apellidoMaterno;
+public class Historial {    
+    String Nombre;
+    String Apellido_Paterno;
+    String Apellido_Materno;
     String RFC;
-    String boleta;
-    float edad;
+    String Boleta;
+    String Sexo;
+    int Edad;
 }

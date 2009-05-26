@@ -10,8 +10,8 @@ package Alumno;
  * @author alumno
  */
 public class Somatometria {
-    String IDUsuario;
+    String RFC;
     float IMC;
-    float peso;
-    float talla;    
+    float Peso;
+    float Talla;
 }
