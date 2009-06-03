@@ -11,11 +11,12 @@ public class Receta{
     private String nombre;    
     private String descripcion;
     private String boleta;
+    private String alergia;
     private float Estatura;
     private float Peso;
     private float Temperatura;
 
-    public Receta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta){
+    public Receta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta, String alergia){
        this.Estatura = Estatura;
        this.Peso = Peso;
        this.Pre_Arterial = Pre_Arterial;
@@ -26,6 +27,7 @@ public class Receta{
        this.nombre = nombre;       
        this.descripcion = descripcion;
        this.boleta = boleta;
+       this.alergia = alergia;
        medicamentos = new AProductos();
     }
    

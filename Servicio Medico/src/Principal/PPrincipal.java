@@ -11,6 +11,7 @@ template in the editor.
  */
 package Principal;
 
+import Recetas.GeneradorPDF;
 import Recetas.Receta;
 import Recetas.SeleccionarMedicina;
 import java.awt.event.KeyEvent;
@@ -39,7 +40,7 @@ public class PPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         actualizaTabla();
-        recetaActual = new Receta(0.0f, 0.0f, 0.0f, null, null, null, null, null, null, null);
+        recetaActual = new Receta(0.0f, 0.0f, 0.0f, null, null, null, null, null, null, null, null);
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
     }
 
@@ -271,13 +272,13 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelInventarioLayout.setVerticalGroup(
             panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInventarioLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -403,7 +404,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -445,11 +446,6 @@ public class PPrincipal extends javax.swing.JFrame {
         );
 
         btnImprimirReceta.setText("Imprimir Receta");
-        btnImprimirReceta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnImprimirRecetaMouseClicked(evt);
-            }
-        });
         btnImprimirReceta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirRecetaActionPerformed(evt);
@@ -515,7 +511,7 @@ public class PPrincipal extends javax.swing.JFrame {
 
         paneles.addTab("Receta", panelReceta);
 
-        paneles.setBounds(10, 10, 588, 370);
+        paneles.setBounds(10, 10, -1, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
@@ -681,10 +677,6 @@ public class PPrincipal extends javax.swing.JFrame {
         }
 }//GEN-LAST:event_jTable1PropertyChange
 
-    private void btnImprimirRecetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirRecetaMouseClicked
-        JOptionPane.showMessageDialog(this, "Espere, un momento, \nla impresora esta saturada.");
-}//GEN-LAST:event_btnImprimirRecetaMouseClicked
-
     private void panelRecetaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelRecetaFocusGained
         // TODO add your handling code here:
 }//GEN-LAST:event_panelRecetaFocusGained
@@ -715,10 +707,8 @@ public class PPrincipal extends javax.swing.JFrame {
 }//GEN-LAST:event_btnImprimirHistorialMouseClicked
 
     private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
-        PrinterJob trabajito = PrinterJob.getPrinterJob();
-        if(trabajito.printDialog()){
-            System.out.println("Me la mamas");
-        }
+        GeneradorPDF generador = new GeneradorPDF();
+        generador.genera();
 }//GEN-LAST:event_btnImprimirRecetaActionPerformed
 
     /**
