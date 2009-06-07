@@ -11,7 +11,6 @@ template in the editor.
  */
 package Principal;
 
-import Recetas.GeneradorPDF;
 import Recetas.Receta;
 import Recetas.SeleccionarMedicina;
 import java.awt.event.KeyEvent;
@@ -19,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import inventario.*;
 import java.awt.print.PrinterJob;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -40,7 +40,7 @@ public class PPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         actualizaTabla();
-        recetaActual = new Receta(0.0f, 0.0f, 0.0f, null, null, null, null, null, null, null, null);
+        recetaActual = new Receta();
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
     }
 
@@ -107,7 +107,6 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -116,32 +115,34 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         panelReceta = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        fldRFC = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        fldEstatura = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        fldPeso = new javax.swing.JTextField();
+        fldPresion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
+        fldFrecCardiaca = new javax.swing.JTextField();
+        fldTemperatura = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        fldFrecResp = new javax.swing.JTextField();
+        fldAlergia = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel25 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaDescripcion = new javax.swing.JTextArea();
         jPanel26 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listMed = new javax.swing.JList();
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
         btnImprimirReceta = new javax.swing.JButton();
         btnImprimirHistorial = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -168,11 +169,6 @@ public class PPrincipal extends javax.swing.JFrame {
                 cerrar(evt);
             }
         });
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 60, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -295,7 +291,7 @@ public class PPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Boleta:");
+        fldRFC.setText("RFC:");
 
         jButton1.setText("Buscar Historial");
 
@@ -303,95 +299,92 @@ public class PPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Estatura:");
 
-        jTextField3.setEditable(false);
-
         jLabel4.setText("Peso:");
-
-        jTextField4.setEditable(false);
-
-        jTextField5.setEditable(false);
 
         jLabel5.setText("Presion Arterial:");
 
         jLabel6.setText("Frec. Cardiaca:");
 
-        jTextField6.setEditable(false);
-
-        jButton3.setText("Ver Hist. Completo");
-
-        jTextField9.setEditable(false);
-
         jLabel8.setText("Temperatura:");
 
         jLabel11.setText("Frec. Respiratoria:");
 
-        jTextField10.setEditable(false);
+        fldAlergia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fldAlergiaActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Alergias:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(fldAlergia, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fldTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fldEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField10)))
-                    .addComponent(jButton3))
-                .addContainerGap(26, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(fldPresion, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(fldFrecCardiaca)
+                    .addComponent(fldFrecResp))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField3, jTextField4, jTextField9});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {fldEstatura, fldPeso, fldTemperatura});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fldPresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fldFrecCardiaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldFrecResp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fldAlergia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)))
         );
 
         jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setTabSize(3);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane2.setViewportView(jTextArea1);
+        txaDescripcion.setColumns(20);
+        txaDescripcion.setLineWrap(true);
+        txaDescripcion.setRows(5);
+        txaDescripcion.setTabSize(3);
+        txaDescripcion.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txaDescripcion);
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);
@@ -404,7 +397,7 @@ public class PPrincipal extends javax.swing.JFrame {
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -445,17 +438,22 @@ public class PPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnImprimirReceta.setText("Imprimir Receta");
+        btnImprimirReceta.setText("Enviar Receta al Historial");
         btnImprimirReceta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirRecetaActionPerformed(evt);
             }
         });
 
-        btnImprimirHistorial.setText("Imprimir Historial");
+        btnImprimirHistorial.setText("Consultar Historial");
         btnImprimirHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnImprimirHistorialMouseClicked(evt);
+            }
+        });
+        btnImprimirHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirHistorialActionPerformed(evt);
             }
         });
 
@@ -467,13 +465,14 @@ public class PPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28)
+                        .addComponent(fldRFC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnImprimirHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnImprimirHistorial))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecetaLayout.createSequentialGroup()
                         .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -492,10 +491,10 @@ public class PPrincipal extends javax.swing.JFrame {
             .addGroup(panelRecetaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(btnImprimirHistorial))
+                    .addComponent(btnImprimirHistorial)
+                    .addComponent(fldRFC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
@@ -511,8 +510,13 @@ public class PPrincipal extends javax.swing.JFrame {
 
         paneles.addTab("Receta", panelReceta);
 
-        paneles.setBounds(10, 10, -1, 370);
+        paneles.setBounds(10, 10, 594, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
 
@@ -686,6 +690,9 @@ public class PPrincipal extends javax.swing.JFrame {
         selecMed.setVisible(true);
         if (selecMed.elegido) {
             recetaActual.getMedicamentos().nuevoProducto(selecMed.prodSeleccionado.getNumCodigoBarras(), selecMed.prodSeleccionado.getNombre(), selecMed.prodSeleccionado.getCantidad());
+            if(recetaActual.getMedicamentos().getProductos()[recetaActual.getMedicamentos().regresaPosProductoPorNombre(selecMed.prodSeleccionado.getNombre())].getCantidad()  > Main.productos.getProductos()[Main.productos.regresaPosProductoPorNombre(selecMed.prodSeleccionado.getNombre())].getCantidad()){
+                recetaActual.getMedicamentos().getProductos()[recetaActual.getMedicamentos().regresaPosProductoPorNombre(selecMed.prodSeleccionado.getNombre())].setCantidad(Main.productos.getProductos()[Main.productos.regresaPosProductoPorNombre(selecMed.prodSeleccionado.getNombre())].getCantidad());
+            }
             actualizaLista();
         }
     }//GEN-LAST:event_btnAgregarMedicinaARecetaActionPerformed
@@ -707,9 +714,40 @@ public class PPrincipal extends javax.swing.JFrame {
 }//GEN-LAST:event_btnImprimirHistorialMouseClicked
 
     private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
-        GeneradorPDF generador = new GeneradorPDF();
-        generador.genera();
+       String nombre = null;
+       try{
+           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, fldRFC.getText(), txaDescripcion.getText(), null, fldAlergia.getText());
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(this, "Por favor revisa que los campos esten bien escritos");
+           return;
+       }
+       if(JOptionPane.showConfirmDialog(this, "¿Deseas crear un archivo PDF con la receta?", "Creacion PDF", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            System.out.println("Quizo imprimir");
+            recetaActual.generaPDF();
+       }
+       fldEstatura.setText("");
+       fldPeso.setText("");
+       fldTemperatura.setText("");
+       fldPresion.setText("");
+       fldFrecCardiaca.setText("");
+       fldFrecResp.setText("");
+       fldRFC.setText("");
+       txaDescripcion.setText("");
+       fldAlergia.setText("");
+       for(int i = 1; i<=recetaActual.getMedicamentos().getN(); i++){
+            Main.productos.getProductos()[Main.productos.regresaPosProductoPorNombre(recetaActual.getMedicamentos().getProductos()[i].getNombre())].incrementaCantidad(-recetaActual.getMedicamentos().getProductos()[i].getCantidad());
+       }
+       recetaActual = new Receta();
+       actualizaLista();
 }//GEN-LAST:event_btnImprimirRecetaActionPerformed
+
+    private void fldAlergiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fldAlergiaActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_fldAlergiaActionPerformed
+
+    private void btnImprimirHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirHistorialActionPerformed
+        Utiles.openURL("http://www.applesfera.com");
+    }//GEN-LAST:event_btnImprimirHistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -730,13 +768,20 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarMedicinaAReceta;
     private javax.swing.JButton btnImprimirHistorial;
     private javax.swing.JButton btnImprimirReceta;
+    private javax.swing.JTextField fldAlergia;
+    private javax.swing.JTextField fldEstatura;
+    private javax.swing.JTextField fldFrecCardiaca;
+    private javax.swing.JTextField fldFrecResp;
+    private javax.swing.JTextField fldPeso;
+    private javax.swing.JTextField fldPresion;
+    private javax.swing.JLabel fldRFC;
+    private javax.swing.JTextField fldTemperatura;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -758,20 +803,14 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JList listMed;
     private javax.swing.JPanel panelInventario;
     private javax.swing.JPanel panelReceta;
     private javax.swing.JTabbedPane paneles;
+    private javax.swing.JTextArea txaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

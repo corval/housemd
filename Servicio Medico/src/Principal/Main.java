@@ -24,8 +24,8 @@ public class Main {
     static AUsuarios usuarios;
     static LogIn logIn;
     static String login = "root";
-    static String password = "pass";
-    static String url = "jdbc:mysql://192.168.0.48:3306/test";
+    static String password = "";
+    static String url = "jdbc:mysql://201.163.171.178:3306/house";
     static Connection conexion;
     static Statement stmt;
     static ResultSet rs;
@@ -78,23 +78,25 @@ public class Main {
             System.out.println("No esta el archivo de productos");
         }
     }
-/*
+
     static void cargaBD() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
             conexion = DriverManager.getConnection(url, login, password);
             if (conexion != null) {
                 System.out.println("Conexión a base de datos " + url + " ... Ok");
                 conexion.close();
             }
         } catch (Exception e) {
+
             System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
+            e.printStackTrace();
         }
-        try {
+        /*try {
             stmt = conexion.createStatement();
         } catch (SQLException ex) {
-        }
-    }*/
+        }*/
+    }
 
     /**
      * Para los que no sepan esto es el main
