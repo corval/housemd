@@ -1,12 +1,12 @@
 package inventario;
 
-public class Producto implements java.io.Serializable{
+public class Producto implements java.io.Serializable, java.lang.Cloneable{
     private String numCodigoBarras;
     private String nombre;
     private int cantidad;
 
 
-    Producto(String numCodigoBarras, String nombre, int cantidad){
+    public Producto(String numCodigoBarras, String nombre, int cantidad){
         this.numCodigoBarras = numCodigoBarras;
         this.nombre = nombre;
         this.cantidad = cantidad;

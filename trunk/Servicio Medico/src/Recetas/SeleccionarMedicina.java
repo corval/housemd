@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 public class SeleccionarMedicina extends javax.swing.JDialog {
 
     AProductos productos;
-    public Producto prodSeleccionado;
+    public Producto prodSeleccionado, temp;
     public boolean elegido;
 
    public SeleccionarMedicina(java.awt.Frame parent, boolean modal, AProductos productos) {
@@ -165,7 +165,8 @@ public class SeleccionarMedicina extends javax.swing.JDialog {
 
     private void Aceptar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar
          if (listMed.getSelectedIndex() >= 0) {
-            prodSeleccionado = productos.getProductos()[productos.regresaPosProductoPorNombre(listMed.getSelectedValue().toString())];
+            temp = productos.getProductos()[productos.regresaPosProductoPorNombre(listMed.getSelectedValue().toString())];
+            prodSeleccionado = new Producto(temp.getNumCodigoBarras(), temp.getNombre(), temp.getCantidad());
             try {
                 prodSeleccionado.setCantidad(Integer.parseInt(txtCant.getText()) > 0 ? Integer.parseInt(txtCant.getText()) : 0);
                 elegido = true;
