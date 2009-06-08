@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 public class Main {
 
     static PPrincipal principal;
+    static Splash splash;
     static AProductos productos;
     static AUsuarios usuarios;
     static Preferencias preferencias;
@@ -113,7 +115,7 @@ public class Main {
                 conexion.close();
             }
         } catch (Exception e) {
-
+            JOptionPane.showMessageDialog(null, "Hubo un problema al intentar conectarse con la base de datos " + preferencias.urlBD, "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Hubo un problema al intentar conectarse con la base de datos " + preferencias.urlBD);
             e.printStackTrace();
         }
@@ -130,12 +132,15 @@ public class Main {
         productos = new AProductos();
         usuarios = new AUsuarios();
         preferencias = new Preferencias();
+        splash = new Splash(null, false);
+        splash.setVisible(true);
         //carga archivos
         cargaUsuarios();
         cargaProductos();
         cargaPreferencias();
         cargaBD();
         //pantallas
+        splash.dispose();
         principal = new PPrincipal();
         logIn = new LogIn();
 

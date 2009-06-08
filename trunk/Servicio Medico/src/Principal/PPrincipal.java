@@ -14,9 +14,14 @@ package Principal;
 import Recetas.Receta;
 import Recetas.SeleccionarMedicina;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import inventario.*;
 import java.awt.print.PrinterJob;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -36,6 +41,8 @@ public class PPrincipal extends javax.swing.JFrame {
     int cantidad;
     SeleccionarMedicina selecMed;
     Receta recetaActual;
+    String nombreActual;
+    int edadActual;
     boolean historialCargado;
 
     public PPrincipal() {
@@ -45,6 +52,7 @@ public class PPrincipal extends javax.swing.JFrame {
         recetaActual = new Receta();
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
         historialCargado = false;
+        lblHistorialCargado.setVisible(false);
     }
 
     boolean hayItemSelecto() {
@@ -145,6 +153,7 @@ public class PPrincipal extends javax.swing.JFrame {
         btnAgregarMedicinaAReceta = new javax.swing.JButton();
         btnImprimirReceta = new javax.swing.JButton();
         btnImprimirHistorial = new javax.swing.JButton();
+        lblHistorialCargado = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
@@ -299,6 +308,11 @@ public class PPrincipal extends javax.swing.JFrame {
         lblRFC.setText("RFC:");
 
         jButton1.setText("Buscar Historial");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Signos Vitales"));
 
@@ -462,6 +476,9 @@ public class PPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblHistorialCargado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblHistorialCargado.setText("Historial Cargado");
+
         javax.swing.GroupLayout panelRecetaLayout = new javax.swing.GroupLayout(panelReceta);
         panelReceta.setLayout(panelRecetaLayout);
         panelRecetaLayout.setHorizontalGroup(
@@ -477,7 +494,9 @@ public class PPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnImprimirHistorial))
+                        .addComponent(btnImprimirHistorial)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblHistorialCargado, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRecetaLayout.createSequentialGroup()
                         .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -491,6 +510,9 @@ public class PPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnImprimirReceta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
+
+        panelRecetaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnImprimirHistorial, jButton1});
+
         panelRecetaLayout.setVerticalGroup(
             panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRecetaLayout.createSequentialGroup()
@@ -499,7 +521,8 @@ public class PPrincipal extends javax.swing.JFrame {
                     .addComponent(fldRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(btnImprimirHistorial)
-                    .addComponent(lblRFC))
+                    .addComponent(lblRFC)
+                    .addComponent(lblHistorialCargado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
@@ -540,6 +563,17 @@ public class PPrincipal extends javax.swing.JFrame {
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Salir(evt);
+            }
+        });
+        jMenuItem3.addMenuDragMouseListener(new javax.swing.event.MenuDragMouseListener() {
+            public void menuDragMouseDragged(javax.swing.event.MenuDragMouseEvent evt) {
+            }
+            public void menuDragMouseEntered(javax.swing.event.MenuDragMouseEvent evt) {
+            }
+            public void menuDragMouseExited(javax.swing.event.MenuDragMouseEvent evt) {
+                jMenuItem3MenuDragMouseExited(evt);
+            }
+            public void menuDragMouseReleased(javax.swing.event.MenuDragMouseEvent evt) {
             }
         });
         MenuArchivo.add(jMenuItem3);
@@ -610,6 +644,13 @@ public class PPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_Acerca
 
     private void Salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir
+        Main.guardaUsuarios();
+        Main.guardaProductos();
+        if(Main.conexion != null){
+            try {
+                Main.conexion.close();
+            } catch (SQLException ex) {}
+        }
         System.exit(0);
     }//GEN-LAST:event_Salir
 
@@ -722,6 +763,11 @@ public class PPrincipal extends javax.swing.JFrame {
     private void cerrar(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_cerrar
         Main.guardaUsuarios();
         Main.guardaProductos();
+        if(Main.conexion != null){
+            try {
+                Main.conexion.close();
+            } catch (SQLException ex) {}
+        }
     }//GEN-LAST:event_cerrar
 
     private void btnImprimirHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImprimirHistorialMouseClicked
@@ -731,10 +777,20 @@ public class PPrincipal extends javax.swing.JFrame {
     private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
        String nombre = null;
        try{
-           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, lblRFC.getText(), txaDescripcion.getText(), null, fldAlergia.getText());
+           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, lblRFC.getText(), txaDescripcion.getText(), nombreActual, fldAlergia.getText(), edadActual);
        }catch(Exception e){
            JOptionPane.showMessageDialog(this, "Por favor revisa que los campos esten bien escritos");
            return;
+       }
+       if(historialCargado){
+            try {
+                Statement stmt = Main.conexion.createStatement();
+                stmt.executeUpdate("INSERT INTO recetas(RFC, Estatura, Peso, Temperatura, Pre_Arterial, Fre_Cardiaca, Fre_Respiratoria, Descripcion) VALUES ('" +
+                        recetaActual.getRFC() + "' '" + String.valueOf((int)recetaActual.getEstatura()) + "' '" + String.valueOf((int)recetaActual.getPeso()) + "' '" +
+                        String.valueOf((int)recetaActual.getTemperatura()) + "' '" + recetaActual.getPre_Arterial() + "' '" + recetaActual.getFre_Cardiaca() + "' '" +
+                        recetaActual.getFre_Respiratoria() + "' '" + recetaActual.getDescripcion() + "')");
+            } catch (SQLException ex) {
+            }
        }
        if(JOptionPane.showConfirmDialog(this, "¿Deseas crear un archivo PDF con la receta?", "Creacion PDF", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
             System.out.println("Quizo imprimir");
@@ -768,6 +824,42 @@ public class PPrincipal extends javax.swing.JFrame {
         pPreferencias = new PPreferencias(this, true);
         pPreferencias.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        historialCargado = false;
+        lblHistorialCargado.setVisible(false);
+        nombreActual = "";
+        edadActual = 0;
+        if(Main.conexion != null){
+            try {
+                Statement stmt = Main.conexion.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM HISTORAL WHERE RFC = " + fldRFC.getText());
+                if(rs.first()){
+                    nombreActual = rs.getString("Nombre");
+                    edadActual = rs.getInt("Edad");
+                    historialCargado = true;
+                    lblHistorialCargado.setVisible(true);
+                }
+            } catch (Exception ex) {    }
+        }
+        else{
+            Main.cargaBD();
+            try {
+                Statement stmt = Main.conexion.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * FROM HISTORAL WHERE RFC = " + fldRFC.getText());
+                if(rs.first()){
+                    nombreActual = rs.getString("Nombre");
+                    edadActual = rs.getInt("Edad");
+                    historialCargado = true;
+                    lblHistorialCargado.setVisible(true);
+                }
+            } catch (Exception ex) {    }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem3MenuDragMouseExited(javax.swing.event.MenuDragMouseEvent evt) {//GEN-FIRST:event_jMenuItem3MenuDragMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3MenuDragMouseExited
 
     /**
      * @param args the command line arguments
@@ -828,6 +920,7 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblHistorialCargado;
     private javax.swing.JLabel lblRFC;
     private javax.swing.JList listMed;
     private javax.swing.JPanel panelInventario;
