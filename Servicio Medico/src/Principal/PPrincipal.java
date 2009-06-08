@@ -785,10 +785,10 @@ public class PPrincipal extends javax.swing.JFrame {
        if(historialCargado){
             try {
                 Statement stmt = Main.conexion.createStatement();
-                stmt.executeUpdate("INSERT INTO recetas(RFC, Estatura, Peso, Temperatura, Pre_Arterial, Fre_Cardiaca, Fre_Respiratoria, Descripcion) VALUES ('" +
-                        recetaActual.getRFC() + "' '" + String.valueOf((int)recetaActual.getEstatura()) + "' '" + String.valueOf((int)recetaActual.getPeso()) + "' '" +
-                        String.valueOf((int)recetaActual.getTemperatura()) + "' '" + recetaActual.getPre_Arterial() + "' '" + recetaActual.getFre_Cardiaca() + "' '" +
-                        recetaActual.getFre_Respiratoria() + "' '" + recetaActual.getDescripcion() + "')");
+                stmt.executeUpdate("INSERT INTO receta (RFC, Estatura, Peso, Temperatura, Pre_Arterial, Fre_Cardiaca, Fre_Respiratoria, Descripcion) VALUES ('" +
+                        recetaActual.getRFC() + "', '" + String.valueOf((int)recetaActual.getEstatura()) + "', '" + String.valueOf((int)recetaActual.getPeso()) + "', '" +
+                        String.valueOf((int)recetaActual.getTemperatura()) + "', '" + recetaActual.getPre_Arterial() + "', '" + recetaActual.getFre_Cardiaca() + "', '" +
+                        recetaActual.getFre_Respiratoria() + "', '" + recetaActual.getDescripcion() + "')");
             } catch (SQLException ex) {
             }
        }
@@ -817,8 +817,9 @@ public class PPrincipal extends javax.swing.JFrame {
 }//GEN-LAST:event_fldAlergiaActionPerformed
 
     private void btnImprimirHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirHistorialActionPerformed
-        Utiles.openURL(Main.preferencias.urlConsultas + "/consultaHistorial.php?RFC=" + fldRFC.getText());
+        Utiles.openURL(Main.preferencias.urlConsultas + "/consultaHistorial.php?rfc2=" + fldRFC.getText()+"&LOL=Consultar");
     }//GEN-LAST:event_btnImprimirHistorialActionPerformed
+
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         pPreferencias = new PPreferencias(this, true);
@@ -830,29 +831,38 @@ public class PPrincipal extends javax.swing.JFrame {
         lblHistorialCargado.setVisible(false);
         nombreActual = "";
         edadActual = 0;
-        if(Main.conexion != null){
+         System.out.println("yay!! query por ser creado "+Main.conexion.toString());
+          System.out.println(Main.conexion == null);
+   if(Main.conexion != null){
             try {
                 Statement stmt = Main.conexion.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM HISTORAL WHERE RFC = " + fldRFC.getText());
+                ResultSet rs = stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
+                System.out.println("yay!! query");
+                  
                 if(rs.first()){
                     nombreActual = rs.getString("Nombre");
                     edadActual = rs.getInt("Edad");
                     historialCargado = true;
+                      System.out.println(nombreActual);
                     lblHistorialCargado.setVisible(true);
                 }
+                  Main.conexion.close();
             } catch (Exception ex) {    }
-        }
+       }
         else{
             Main.cargaBD();
             try {
+                System.out.println("yay!! query 2 ");
                 Statement stmt = Main.conexion.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM HISTORAL WHERE RFC = " + fldRFC.getText());
+               ResultSet rs = stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
                 if(rs.first()){
+                    System.out.println("yay!! dentro de query");
                     nombreActual = rs.getString("Nombre");
                     edadActual = rs.getInt("Edad");
                     historialCargado = true;
                     lblHistorialCargado.setVisible(true);
                 }
+              Main.conexion.close();
             } catch (Exception ex) {    }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

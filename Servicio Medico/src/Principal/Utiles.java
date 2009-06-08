@@ -66,6 +66,7 @@ public class Utiles {
 
     public static void openURL(String url) {
         String osName = System.getProperty("os.name");
+       System.out.println("OS NAME! "+osName);
         try {
             if (osName.startsWith("Mac OS")) {
                 Class fileMgr = Class.forName("com.apple.eio.FileManager");
@@ -74,8 +75,10 @@ public class Utiles {
                 openURL.invoke(null, new Object[] {url});
             }
             else if (osName.startsWith("Windows"))
+            {
+                  System.out.println("guindows! yay!");
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
-            else { //assume Unix or Linux
+            }else { //assume Unix or Linux
                 String[] browsers = {
                 "firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape" };
                 String browser = null;
