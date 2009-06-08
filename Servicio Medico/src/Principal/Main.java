@@ -4,6 +4,7 @@
  */
 package Principal;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import inventario.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,10 +23,11 @@ public class Main {
     static PPrincipal principal;
     static AProductos productos;
     static AUsuarios usuarios;
+    static Preferencias preferencias;
     static LogIn logIn;
     static String login = "root";
     static String password = "";
-    static String url = "jdbc:mysql://201.163.171.178:3306/house";
+    static String url = "jdbc:mysql://201.163.156.32:3306/house";
     static Connection conexion;
     static Statement stmt;
     static ResultSet rs;
@@ -79,23 +81,42 @@ public class Main {
         }
     }
 
+    static void guardaPreferencias() {
+        try {
+            FileOutputStream fos = new FileOutputStream("preferencias.hmd");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(preferencias);
+            oos.flush();
+            oos.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    static void cargaPreferencias() {
+        try {
+            FileInputStream fis = new FileInputStream("preferencias.hmd");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            preferencias = (Preferencias) (ois.readObject());
+        } catch (Exception e) {
+            System.out.println("No esta el archivo de productos");
+        }
+    }
+
+
     static void cargaBD() {
         try {
-            Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-            conexion = DriverManager.getConnection(url, login, password);
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conexion = DriverManager.getConnection("jdbc:mysql://" + preferencias.urlBD + "/" + preferencias.nombreBD, preferencias.loginBD, preferencias.passBD);
             if (conexion != null) {
-                System.out.println("Conexión a base de datos " + url + " ... Ok");
+                System.out.println("Conexión a base de datos " + preferencias.urlBD + " ... Ok");
                 conexion.close();
             }
         } catch (Exception e) {
 
-            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + url);
+            System.out.println("Hubo un problema al intentar conectarse con la base de datos " + preferencias.urlBD);
             e.printStackTrace();
         }
-        /*try {
-            stmt = conexion.createStatement();
-        } catch (SQLException ex) {
-        }*/
     }
 
     /**
@@ -106,13 +127,14 @@ public class Main {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
         } catch (Exception ex) {
         }
-        //cargaBD();
         productos = new AProductos();
         usuarios = new AUsuarios();
+        preferencias = new Preferencias();
         //carga archivos
         cargaUsuarios();
         cargaProductos();
-
+        cargaPreferencias();
+        cargaBD();
         //pantallas
         principal = new PPrincipal();
         logIn = new LogIn();
