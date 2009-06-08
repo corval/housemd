@@ -32,9 +32,11 @@ public class PPrincipal extends javax.swing.JFrame {
     DefaultTableModel modelo;
     Object[][] arreglo;
     NuevoProducto nProducto;
+    PPreferencias pPreferencias;
     int cantidad;
     SeleccionarMedicina selecMed;
     Receta recetaActual;
+    boolean historialCargado;
 
     public PPrincipal() {
         initComponents();
@@ -42,6 +44,7 @@ public class PPrincipal extends javax.swing.JFrame {
         actualizaTabla();
         recetaActual = new Receta();
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
+        historialCargado = false;
     }
 
     boolean hayItemSelecto() {
@@ -115,8 +118,8 @@ public class PPrincipal extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox();
         panelReceta = new javax.swing.JPanel();
-        fldRFC = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        lblRFC = new javax.swing.JLabel();
+        fldRFC = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -145,6 +148,8 @@ public class PPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
         jMenuItem3 = new javax.swing.JMenuItem();
         MenuInventario = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -291,7 +296,7 @@ public class PPrincipal extends javax.swing.JFrame {
             }
         });
 
-        fldRFC.setText("RFC:");
+        lblRFC.setText("RFC:");
 
         jButton1.setText("Buscar Historial");
 
@@ -466,9 +471,9 @@ public class PPrincipal extends javax.swing.JFrame {
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(fldRFC)
+                        .addComponent(lblRFC)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fldRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -491,10 +496,10 @@ public class PPrincipal extends javax.swing.JFrame {
             .addGroup(panelRecetaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fldRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(btnImprimirHistorial)
-                    .addComponent(fldRFC))
+                    .addComponent(lblRFC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelRecetaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRecetaLayout.createSequentialGroup()
@@ -519,6 +524,16 @@ public class PPrincipal extends javax.swing.JFrame {
         jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_COMMA, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setText("Preferencias");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        MenuArchivo.add(jMenuItem6);
+        MenuArchivo.add(jSeparator1);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Salir");
@@ -716,7 +731,7 @@ public class PPrincipal extends javax.swing.JFrame {
     private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
        String nombre = null;
        try{
-           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, fldRFC.getText(), txaDescripcion.getText(), null, fldAlergia.getText());
+           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, lblRFC.getText(), txaDescripcion.getText(), null, fldAlergia.getText());
        }catch(Exception e){
            JOptionPane.showMessageDialog(this, "Por favor revisa que los campos esten bien escritos");
            return;
@@ -731,7 +746,7 @@ public class PPrincipal extends javax.swing.JFrame {
        fldPresion.setText("");
        fldFrecCardiaca.setText("");
        fldFrecResp.setText("");
-       fldRFC.setText("");
+       lblRFC.setText("");
        txaDescripcion.setText("");
        fldAlergia.setText("");
        for(int i = 1; i<=recetaActual.getMedicamentos().getN(); i++){
@@ -746,8 +761,13 @@ public class PPrincipal extends javax.swing.JFrame {
 }//GEN-LAST:event_fldAlergiaActionPerformed
 
     private void btnImprimirHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirHistorialActionPerformed
-        Utiles.openURL("http://www.applesfera.com");
+        Utiles.openURL(Main.preferencias.urlConsultas + "/consultaHistorial.php?RFC=" + fldRFC.getText());
     }//GEN-LAST:event_btnImprimirHistorialActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        pPreferencias = new PPreferencias(this, true);
+        pPreferencias.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -774,7 +794,7 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField fldFrecResp;
     private javax.swing.JTextField fldPeso;
     private javax.swing.JTextField fldPresion;
-    private javax.swing.JLabel fldRFC;
+    private javax.swing.JTextField fldRFC;
     private javax.swing.JTextField fldTemperatura;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
@@ -796,17 +816,19 @@ public class PPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lblRFC;
     private javax.swing.JList listMed;
     private javax.swing.JPanel panelInventario;
     private javax.swing.JPanel panelReceta;
