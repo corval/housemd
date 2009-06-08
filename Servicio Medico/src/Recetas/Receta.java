@@ -27,12 +27,13 @@ public class Receta{
     private float Peso;
     private float Temperatura;
     private Calendar calendario;
+    private int edad;
 
     public Receta(){
         medicamentos = new AProductos();
     }
 
-    public Receta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta, String alergia){
+    public Receta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta, String alergia, int edad){
        this.Estatura = Estatura;
        this.Peso = Peso;
        this.Pre_Arterial = Pre_Arterial;
@@ -44,21 +45,23 @@ public class Receta{
        this.descripcion = descripcion;
        this.boleta = boleta;
        this.alergia = alergia;
+       this.edad = edad;
     }
 
 
-    public void llenarReceta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta, String alergia){
-       this.Estatura = Estatura;
-       this.Peso = Peso;
-       this.Pre_Arterial = Pre_Arterial;
-       this.RFC = RFC;
-       this.Fre_Cardiaca = Fre_Cardiaca;
-       this.Fre_Respiratoria = Fre_Respiratoria;
-       this.Temperatura = Temperatura;
-       this.nombre = nombre;
-       this.descripcion = descripcion;
-       this.boleta = boleta;
-       this.alergia = alergia;
+    public void llenarReceta(float Estatura, float Peso, float Temperatura, String Pre_Arterial, String Fre_Cardiaca, String Fre_Respiratoria, String nombre, String RFC, String descripcion, String boleta, String alergia, int edad){
+        this.setEstatura(Estatura);
+        this.setPeso(Peso);
+        this.setPre_Arterial(Pre_Arterial);
+        this.setRFC(RFC);
+        this.setFre_Cardiaca(Fre_Cardiaca);
+        this.setFre_Respiratoria(Fre_Respiratoria);
+        this.setTemperatura(Temperatura);
+        this.setNombre(nombre);
+        this.setDescripcion(descripcion);
+        this.setBoleta(boleta);
+        this.setAlergia(alergia);
+        this.setEdad(edad);
     }
 
     public AProductos getMedicamentos() {
@@ -89,17 +92,17 @@ public class Receta{
             header.setWidthPercentage(100);
             float anchosHeaderPart1[] = {0.3f, 0.5f, 0.2f};
             PdfPTable headerPart1 = new PdfPTable(anchosHeaderPart1);
-            calendario = new GregorianCalendar();
-            headerPart1.addCell("Fecha: " + calendario.get(Calendar.DAY_OF_MONTH) + "-" + calendario.get(Calendar.MONTH) + "-"  + calendario.get(Calendar.YEAR));
-            headerPart1.addCell("Nombre: Este Imbecil");
-            headerPart1.addCell("Edad: La de siempre");
+            setCalendario(new GregorianCalendar());
+            headerPart1.addCell("Fecha: " + getCalendario().get(Calendar.DAY_OF_MONTH) + "-" + getCalendario().get(Calendar.MONTH) + "-"  + getCalendario().get(Calendar.YEAR));
+            headerPart1.addCell("Nombre: " + this.getNombre());
+            headerPart1.addCell("Edad: " + this.getEdad() + " años");
             PdfPTable headerPart2 = new PdfPTable(6);
-            headerPart2.addCell("Peso: " + this.Peso + "Kg");
-            headerPart2.addCell("Talla: " + this.Estatura + "cm");
-            headerPart2.addCell("FC: " + this.Fre_Cardiaca + "X'");
-            headerPart2.addCell("FR: " +this.Fre_Respiratoria + "X'");
-            headerPart2.addCell("Temp.: " + this.Temperatura + "ºC");
-            headerPart2.addCell("T/A:" + this.Pre_Arterial);
+            headerPart2.addCell("Peso: " + this.getPeso() + "Kg");
+            headerPart2.addCell("Talla: " + this.getEstatura() + "cm");
+            headerPart2.addCell("FC: " + this.getFre_Cardiaca() + "X'");
+            headerPart2.addCell("FR: " +this.getFre_Respiratoria() + "X'");
+            headerPart2.addCell("Temp.: " + this.getTemperatura() + "ºC");
+            headerPart2.addCell("T/A:" + this.getPre_Arterial());
             header.addCell(headerPart1);
             header.addCell(headerPart2);
             documento.add(header);
@@ -107,9 +110,9 @@ public class Receta{
             float anchosBody[] = {0.7f, 0.3f};
             PdfPTable body = new PdfPTable(anchosBody);
             body.setWidthPercentage(100);
-            body.addCell("Rp: \n\n" + this.descripcion);
+            body.addCell("Rp: \n\n" + this.getDescripcion());
             PdfPTable bodyDer = new PdfPTable(1);
-            bodyDer.addCell("Alergias: " + this.alergia);
+            bodyDer.addCell("Alergias: " + this.getAlergia());
             PdfPTable medicinas = new PdfPTable(1);
             medicinas.addCell("Medicamentos");
             for(int i = 1; i<=this.medicamentos.getN(); i++){
@@ -128,6 +131,188 @@ public class Receta{
         }
 
         documento.close();
+    }
+
+    /**
+     * @return the Pre_Arterial
+     */
+    public String getPre_Arterial() {
+        return Pre_Arterial;
+    }
+
+    /**
+     * @param Pre_Arterial the Pre_Arterial to set
+     */
+    public void setPre_Arterial(String Pre_Arterial) {
+        this.Pre_Arterial = Pre_Arterial;
+    }
+
+    /**
+     * @return the Fre_Cardiaca
+     */
+    public String getFre_Cardiaca() {
+        return Fre_Cardiaca;
+    }
+
+    /**
+     * @param Fre_Cardiaca the Fre_Cardiaca to set
+     */
+    public void setFre_Cardiaca(String Fre_Cardiaca) {
+        this.Fre_Cardiaca = Fre_Cardiaca;
+    }
+
+    /**
+     * @return the Fre_Respiratoria
+     */
+    public String getFre_Respiratoria() {
+        return Fre_Respiratoria;
+    }
+
+    /**
+     * @param Fre_Respiratoria the Fre_Respiratoria to set
+     */
+    public void setFre_Respiratoria(String Fre_Respiratoria) {
+        this.Fre_Respiratoria = Fre_Respiratoria;
+    }
+
+    /**
+     * @return the RFC
+     */
+    public String getRFC() {
+        return RFC;
+    }
+
+    /**
+     * @param RFC the RFC to set
+     */
+    public void setRFC(String RFC) {
+        this.RFC = RFC;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the boleta
+     */
+    public String getBoleta() {
+        return boleta;
+    }
+
+    /**
+     * @param boleta the boleta to set
+     */
+    public void setBoleta(String boleta) {
+        this.boleta = boleta;
+    }
+
+    /**
+     * @return the alergia
+     */
+    public String getAlergia() {
+        return alergia;
+    }
+
+    /**
+     * @param alergia the alergia to set
+     */
+    public void setAlergia(String alergia) {
+        this.alergia = alergia;
+    }
+
+    /**
+     * @return the Estatura
+     */
+    public float getEstatura() {
+        return Estatura;
+    }
+
+    /**
+     * @param Estatura the Estatura to set
+     */
+    public void setEstatura(float Estatura) {
+        this.Estatura = Estatura;
+    }
+
+    /**
+     * @return the Peso
+     */
+    public float getPeso() {
+        return Peso;
+    }
+
+    /**
+     * @param Peso the Peso to set
+     */
+    public void setPeso(float Peso) {
+        this.Peso = Peso;
+    }
+
+    /**
+     * @return the Temperatura
+     */
+    public float getTemperatura() {
+        return Temperatura;
+    }
+
+    /**
+     * @param Temperatura the Temperatura to set
+     */
+    public void setTemperatura(float Temperatura) {
+        this.Temperatura = Temperatura;
+    }
+
+    /**
+     * @return the calendario
+     */
+    public Calendar getCalendario() {
+        return calendario;
+    }
+
+    /**
+     * @param calendario the calendario to set
+     */
+    public void setCalendario(Calendar calendario) {
+        this.calendario = calendario;
+    }
+
+    /**
+     * @return the edad
+     */
+    public int getEdad() {
+        return edad;
+    }
+
+    /**
+     * @param edad the edad to set
+     */
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
 }
