@@ -153,7 +153,7 @@ public class LogIn extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "El usuario no existe", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
             case -1:
-                JOptionPane.showMessageDialog(this, "Contrase�a incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
                 break;
             case -2:
                 int result = JOptionPane.showConfirmDialog(this, "Aun no existe ningun usuario. Debes crear un administrador primero." + '\n'+ "�Deseas crearlo ahora?");

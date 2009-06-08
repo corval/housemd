@@ -29,7 +29,7 @@ public class Main {
     static LogIn logIn;
     static String login = "root";
     static String password = "";
-    static String url = "jdbc:mysql://201.163.156.32:3306/house";
+    static String url = "jdbc:mysql://localhost/house";
     static Connection conexion;
     static Statement stmt;
     static ResultSet rs;
@@ -112,7 +112,7 @@ public class Main {
             conexion = DriverManager.getConnection("jdbc:mysql://" + preferencias.urlBD + "/" + preferencias.nombreBD, preferencias.loginBD, preferencias.passBD);
             if (conexion != null) {
                 System.out.println("Conexión a base de datos " + preferencias.urlBD + " ... Ok");
-                conexion.close();
+               // conexion.close();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Hubo un problema al intentar conectarse con la base de datos " + preferencias.urlBD, "Error", JOptionPane.ERROR_MESSAGE);
