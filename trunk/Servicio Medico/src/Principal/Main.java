@@ -110,6 +110,7 @@ public class Main {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conexion = DriverManager.getConnection("jdbc:mysql://" + preferencias.urlBD + "/" + preferencias.nombreBD, preferencias.loginBD, preferencias.passBD);
+           stmt = conexion.createStatement();
             if (conexion != null) {
                 System.out.println("Conexión a base de datos " + preferencias.urlBD + " ... Ok");
                // conexion.close();
