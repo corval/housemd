@@ -26,6 +26,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 
 /**
  *
@@ -44,8 +47,14 @@ public class PPrincipal extends javax.swing.JFrame {
     String nombreActual;
     int edadActual;
     boolean historialCargado;
+    GregorianCalendar cal = new GregorianCalendar();
+      int diaActual = cal.get(Calendar.DAY_OF_MONTH);
+        int mesActual = cal.get(Calendar.MONTH)+1;
+        int añoActual = cal.get(Calendar.YEAR);
+    
 
     public PPrincipal() {
+
         initComponents();
         this.setLocationRelativeTo(null);
         actualizaTabla();
@@ -53,6 +62,7 @@ public class PPrincipal extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/housi.png")).getImage());
         historialCargado = false;
         lblHistorialCargado.setVisible(false);
+
     }
 
     boolean hayItemSelecto() {
@@ -60,6 +70,9 @@ public class PPrincipal extends javax.swing.JFrame {
             return false;
         }
         return true;
+    }
+public Calendar getCalendario() {
+        return cal;
     }
 
     void actualizaTabla() {
@@ -777,18 +790,19 @@ public class PPrincipal extends javax.swing.JFrame {
     private void btnImprimirRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirRecetaActionPerformed
        String nombre = null;
        try{
-           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombre, lblRFC.getText(), txaDescripcion.getText(), nombreActual, fldAlergia.getText(), edadActual);
+           recetaActual.llenarReceta(Float.parseFloat(fldEstatura.getText()), Float.parseFloat(fldPeso.getText()), Float.parseFloat(fldTemperatura.getText()), fldPresion.getText(), fldFrecCardiaca.getText(), fldFrecResp.getText(), nombreActual, lblRFC.getText(), txaDescripcion.getText(), null, fldAlergia.getText(), edadActual);
        }catch(Exception e){
            JOptionPane.showMessageDialog(this, "Por favor revisa que los campos esten bien escritos");
            return;
        }
        if(historialCargado){
             try {
-                Statement stmt = Main.conexion.createStatement();
-                stmt.executeUpdate("INSERT INTO receta (RFC, Estatura, Peso, Temperatura, Pre_Arterial, Fre_Cardiaca, Fre_Respiratoria, Descripcion) VALUES ('" +
-                        recetaActual.getRFC() + "', '" + String.valueOf((int)recetaActual.getEstatura()) + "', '" + String.valueOf((int)recetaActual.getPeso()) + "', '" +
+                String date="Fecha: "+diaActual+" - "+mesActual+" - "+añoActual;
+                        System.out.print(date);
+                Main.stmt.executeUpdate("INSERT INTO receta (RFC, Estatura, Peso, Temperatura, Pre_Arterial, Fre_Cardiaca, Fre_Respiratoria, Descripcion,Medicamentos,Fecha) VALUES ( '" +
+                       fldRFC.getText() + "', '" + String.valueOf((int)recetaActual.getEstatura()) + "', '" + String.valueOf((int)recetaActual.getPeso()) + "', '" +
                         String.valueOf((int)recetaActual.getTemperatura()) + "', '" + recetaActual.getPre_Arterial() + "', '" + recetaActual.getFre_Cardiaca() + "', '" +
-                        recetaActual.getFre_Respiratoria() + "', '" + recetaActual.getDescripcion() + "')");
+                        recetaActual.getFre_Respiratoria() + "', '" + recetaActual.getDescripcion() + "', 'medicamentos' , '" +date+ "' )");
             } catch (SQLException ex) {
             }
        }
@@ -835,8 +849,7 @@ public class PPrincipal extends javax.swing.JFrame {
           System.out.println(Main.conexion == null);
    if(Main.conexion != null){
             try {
-                Statement stmt = Main.conexion.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
+                ResultSet rs = Main.stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
                 System.out.println("yay!! query");
                   
                 if(rs.first()){
@@ -846,15 +859,13 @@ public class PPrincipal extends javax.swing.JFrame {
                       System.out.println(nombreActual);
                     lblHistorialCargado.setVisible(true);
                 }
-                  Main.conexion.close();
             } catch (Exception ex) {    }
        }
         else{
             Main.cargaBD();
             try {
                 System.out.println("yay!! query 2 ");
-                Statement stmt = Main.conexion.createStatement();
-               ResultSet rs = stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
+               ResultSet rs = Main.stmt.executeQuery("SELECT * FROM historial WHERE RFC = '" + fldRFC.getText() +"' ");
                 if(rs.first()){
                     System.out.println("yay!! dentro de query");
                     nombreActual = rs.getString("Nombre");
@@ -862,7 +873,6 @@ public class PPrincipal extends javax.swing.JFrame {
                     historialCargado = true;
                     lblHistorialCargado.setVisible(true);
                 }
-              Main.conexion.close();
             } catch (Exception ex) {    }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

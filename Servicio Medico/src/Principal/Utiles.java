@@ -1,11 +1,3 @@
-/*
- * MetoUtil.java
- *
- * Created on 25 de septiembre de 2008, 03:39 PM
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
 
 package Principal;
 

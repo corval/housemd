@@ -82,7 +82,7 @@ public class Historial {
                     
                 }else{
                     JOptionPane.showMessageDialog(null ,"Lo sentimos no existe ese RFC", "Error", JOptionPane.ERROR_MESSAGE);
-                    conexion.close();
+                   // conexion.close();
                 }
             }
         }catch (Exception e) {
