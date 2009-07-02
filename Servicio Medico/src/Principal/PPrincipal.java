@@ -131,6 +131,7 @@ public Calendar getCalendario() {
         jTextField8 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel7 = new javax.swing.JLabel();
         paneles = new javax.swing.JTabbedPane();
         panelInventario = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -167,7 +168,6 @@ public Calendar getCalendario() {
         btnImprimirReceta = new javax.swing.JButton();
         btnImprimirHistorial = new javax.swing.JButton();
         lblHistorialCargado = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuArchivo = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -189,13 +189,18 @@ public Calendar getCalendario() {
         jTextField7.setEditable(false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Dr. House");
+        setTitle("Cédula Médica Automatizada");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 cerrar(evt);
             }
         });
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
+        jLabel7.setText("Esta Mierda");
+        jLabel7.setBounds(10, 50, 60, 330);
+        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneles.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
@@ -301,7 +306,7 @@ public Calendar getCalendario() {
         panelInventarioLayout.setVerticalGroup(
             panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInventarioLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -378,7 +383,7 @@ public Calendar getCalendario() {
                     .addComponent(fldPresion, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                     .addComponent(fldFrecCardiaca)
                     .addComponent(fldFrecResp))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {fldEstatura, fldPeso, fldTemperatura});
@@ -423,13 +428,13 @@ public Calendar getCalendario() {
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel25Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -489,7 +494,7 @@ public Calendar getCalendario() {
             }
         });
 
-        lblHistorialCargado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblHistorialCargado.setFont(new java.awt.Font("Tahoma", 1, 11));
         lblHistorialCargado.setText("Historial Cargado");
 
         javax.swing.GroupLayout panelRecetaLayout = new javax.swing.GroupLayout(panelReceta);
@@ -553,11 +558,6 @@ public Calendar getCalendario() {
 
         paneles.setBounds(10, 10, 594, 370);
         jLayeredPane1.add(paneles, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SerMed.png"))); // NOI18N
-        jLabel7.setText("Esta Mierda");
-        jLabel7.setBounds(10, 50, 60, 330);
-        jLayeredPane1.add(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         MenuArchivo.setText("Archivo");
 
